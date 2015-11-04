@@ -1,5 +1,6 @@
 #include "asterisk.h"
 
+#include "asterisk/strings.h"
 #include "asterisk/module.h"
 #include "asterisk/format.h"
 
@@ -46,11 +47,10 @@ static struct ast_format *ilbc_parse_sdp_fmtp(const struct ast_format *format, c
 	}
 	attr = ast_format_get_attribute_data(cloned);
 
-	attr->mode = 30;
 	if (sscanf(attributes, "mode=%30u", &val) == 1) {
-		if (val == 20) {
-			attr->mode = 20;
-		}
+		attr->mode = val;
+	} else {
+		attr->mode = 30; /* optional attribute; 30 is default value */
 	}
 
 	return cloned;
@@ -64,7 +64,7 @@ static void ilbc_generate_sdp_fmtp(const struct ast_format *format, unsigned int
 		attr = &default_ilbc_attr;
 	}
 
-	if (attr->mode == 20) {
+	if (attr->mode != 30) {
 		ast_str_append(str, 0, "a=fmtp:%u mode=%u\r\n", payload, attr->mode);
 	}
 }
@@ -90,9 +90,7 @@ static struct ast_format *ilbc_getjoint(const struct ast_format *format1, const 
 	}
 	attr_res = ast_format_get_attribute_data(jointformat);
 
-	if (attr1->mode == 20 && attr2->mode == 20) {
-		attr_res->mode = 20;
-	} else {
+	if (attr1->mode != attr2->mode) {
 		attr_res->mode = 30;
 	}
 
