@@ -39,6 +39,7 @@ static struct ast_format *ilbc_parse_sdp_fmtp(const struct ast_format *format, c
 {
 	struct ast_format *cloned;
 	struct ilbc_attr *attr;
+	const char *kvp;
 	unsigned int val;
 
 	cloned = ast_format_clone(format);
@@ -47,7 +48,7 @@ static struct ast_format *ilbc_parse_sdp_fmtp(const struct ast_format *format, c
 	}
 	attr = ast_format_get_attribute_data(cloned);
 
-	if (sscanf(attributes, "mode=%30u", &val) == 1) {
+	if ((kvp = strstr(attributes, "mode")) && sscanf(kvp, "mode=%30u", &val) == 1) {
 		attr->mode = val;
 	} else {
 		attr->mode = 30; /* optional attribute; 30 is default value */
