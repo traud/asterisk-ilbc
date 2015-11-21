@@ -7,8 +7,8 @@
  *
  */
 
-#include "asterisk/format_cache.h"
-#include "asterisk/frame.h"
+#include "asterisk/format_cache.h"      /* for ast_format_ilbc */
+#include "asterisk/frame.h"             /* for ast_frame, etc */
 
 static uint8_t ex_ilbc[] = {
 	0xff, 0xa0, 0xff, 0xfa, 0x0f, 0x60, 0x12, 0x11, 0xa2, 0x47, 

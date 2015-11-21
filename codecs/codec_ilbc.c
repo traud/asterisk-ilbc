@@ -34,10 +34,13 @@
 
 ASTERISK_FILE_VERSION(__FILE__, "$Revision$")
 
-#include "asterisk/translate.h"
+#include "asterisk/codec.h"             /* for AST_MEDIA_TYPE_AUDIO */
+#include "asterisk/format.h"            /* for ast_format_get_attribute_data */
+#include "asterisk/frame.h"             /* for ast_frame, etc */
+#include "asterisk/linkedlists.h"       /* for AST_LIST_NEXT, etc */
+#include "asterisk/logger.h"            /* for ast_log, ast_debug, etc */
 #include "asterisk/module.h"
-#include "asterisk/utils.h"
-#include "asterisk/linkedlists.h"
+#include "asterisk/translate.h"         /* for ast_trans_pvt, etc */
 
 #ifdef ILBC_WEBRTC
 #include <ilbc.h>
@@ -52,10 +55,11 @@ typedef float         ilbc_block;
 #define BUF_TYPE uc
 #endif
 
-#define USE_ILBC_ENHANCER	0
-#define	BUFFER_SAMPLES	8000
-
 #include "asterisk/ilbc.h"
+
+#define USE_ILBC_ENHANCER 0
+#define BUFFER_SAMPLES    8000
+
 /* Sample frame data */
 #include "asterisk/slin.h"
 #include "ex_ilbc.h"

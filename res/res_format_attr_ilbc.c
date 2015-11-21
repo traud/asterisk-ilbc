@@ -1,8 +1,9 @@
 #include "asterisk.h"
 
-#include "asterisk/strings.h"
 #include "asterisk/module.h"
 #include "asterisk/format.h"
+#include "asterisk/strings.h"           /* for ast_str_append */
+#include "asterisk/utils.h"             /* for ast_calloc, ast_free */
 
 #include "asterisk/ilbc.h"
 
