@@ -21,7 +21,7 @@ static void ilbc_destroy(struct ast_format *format)
 static int ilbc_clone(const struct ast_format *src, struct ast_format *dst)
 {
 	struct ilbc_attr *original = ast_format_get_attribute_data(src);
-	struct ilbc_attr *attr = ast_calloc(1, sizeof(*attr));
+	struct ilbc_attr *attr = ast_malloc(sizeof(*attr));
 
 	if (!attr) {
 		return -1;
@@ -29,6 +29,8 @@ static int ilbc_clone(const struct ast_format *src, struct ast_format *dst)
 
 	if (original) {
 		*attr = *original;
+	} else {
+		*attr = default_ilbc_attr;
 	}
 
 	ast_format_set_attribute_data(dst, attr);
