@@ -4,7 +4,7 @@ Asterisk already supports iLBC 30. This patch adds [iLBC 20](http://tools.ietf.o
 
 ## Installing the patch
 
-The patch was built on top of Asterisk 13.6.0. If you use a newer version and the patch fails, please, [report](http://help.github.com/articles/creating-an-issue/)!
+The patch was built on top of Asterisk 13.7.2. If you use a newer version and the patch fails, please, [report](http://help.github.com/articles/creating-an-issue/)!
 
     cd /usr/src/
     wget downloads.asterisk.org/pub/telephony/asterisk/asterisk-13-current.tar.gz

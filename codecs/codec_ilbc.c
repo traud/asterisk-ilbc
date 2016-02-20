@@ -75,7 +75,7 @@ struct ilbc_coder_pvt {
 static int lintoilbc_new(struct ast_trans_pvt *pvt)
 {
 	struct ilbc_coder_pvt *tmp = pvt->pvt;
-	struct ilbc_attr *attr = pvt->f.subclass.format ? ast_format_get_attribute_data(pvt->f.subclass.format) : NULL;
+	struct ilbc_attr *attr = pvt->explicit_dst ? ast_format_get_attribute_data(pvt->explicit_dst) : NULL;
 	const unsigned int mode = attr ? attr->mode : 30;
 
 	initEncode(&tmp->enc, mode);
