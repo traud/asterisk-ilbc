@@ -68,9 +68,8 @@ static void ilbc_generate_sdp_fmtp(const struct ast_format *format, unsigned int
 		attr = &default_ilbc_attr;
 	}
 
-	if (attr->mode != 30) {
-		ast_str_append(str, 0, "a=fmtp:%u mode=%u\r\n", payload, attr->mode);
-	}
+	/* send mode even when 30, see issue report ASTERISK-26221 */
+	ast_str_append(str, 0, "a=fmtp:%u mode=%u\r\n", payload, attr->mode);
 }
 
 static struct ast_format *ilbc_getjoint(const struct ast_format *format1, const struct ast_format *format2)
