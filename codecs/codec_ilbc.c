@@ -101,7 +101,7 @@ static int ilbctolin_framein(struct ast_trans_pvt *pvt, struct ast_frame *f)
 	const unsigned int sample_rate = pvt->t->dst_codec.sample_rate;
 	const unsigned int samples_per_frame = mode * sample_rate / 1000;
 	const unsigned int octets_per_frame = (mode == 20) ? 38 : 50;
-	
+
 	int plc_mode = 1; /* 1 = normal data, 0 = plc */
 	/* Assuming there's space left, decode into the current buffer at
 	   the tail location.  Read in as many frames as there are */
