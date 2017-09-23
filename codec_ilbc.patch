@@ -4,7 +4,7 @@
  
 +#include "asterisk/ilbc.h"
  #include "asterisk/logger.h"
-@@ -586,5 +586,10 @@
+@@ -586,5 +587,10 @@
  static int ilbc_samples(struct ast_frame *frame)
  {
 -	return 240 * (frame->datalen / 50);
@@ -16,7 +16,7 @@
 +	return samples_per_frame * frame->datalen / octets_per_frame;
  }
  
-@@ -595,8 +595,8 @@
+@@ -595,8 +601,8 @@
  	.sample_rate = 8000,
 -	.minimum_ms = 30,
 -	.maximum_ms = 300,
